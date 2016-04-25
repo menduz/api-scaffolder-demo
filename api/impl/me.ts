@@ -14,7 +14,7 @@ export class Controller extends ns.AbstractHandler {
    * @returns { GetResult200 } instances
    */
   async get() {
-    let result = new ns.GetResult200({ itsMe: 'Mario' });
+    let result = new ns.GetResult200({ name: 'Agustin', company: 'MuleSoft' });
     return result;
   }
 }

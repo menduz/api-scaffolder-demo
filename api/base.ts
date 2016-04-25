@@ -203,7 +203,20 @@ export namespace DemoApiV1 {
     }
   }
   
-
+export interface IGetMe200 {
+  name: string;
+  company?: string;
+  [k: string]: any;
+}export interface IGetUserById200 {
+  name?: string;
+  company?: string;
+  [k: string]: any;
+}
+export interface IGetUserById2000 {
+  filter?: string;
+  results?: IGetUserById200[];
+  [k: string]: any;
+}
 
   
   
@@ -216,8 +229,7 @@ export namespace DemoApiV1 {
     
 
 
-    /* Response get status 200 do not describe any schema nor MIME */
-    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    export class GetResult200 extends BaseControllerResponse<IGetMe200> { status = 200; mime = "application/json" }
     
     export type GetResults = GetResult200;
 
@@ -241,6 +253,62 @@ export namespace DemoApiV1 {
 
       /** get method */
       abstract async get(): Promise<GetResults>;
+    }
+  }
+  
+  
+  
+
+  /** 
+   * /users/{userId}
+   * 
+   */
+  export namespace UserById {
+    
+
+
+    export class GetResult200 extends BaseControllerResponse<IGetUserById2000> { status = 200; mime = "application/json" }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /users/{userId} abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/users/{userId}";
+      baseUriParameters = {
+  "userId": {
+    "displayName": "userId",
+    "type": "string",
+    "required": true,
+    "description": ""
+  }
+};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "filter": {
+        "displayName": "filter",
+        "type": "string",
+        "description": "",
+        "name": "filter"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      userId: void(0) as string
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      filter?: string;
+    }
+  ): Promise<GetResults>;
     }
   }
   
