@@ -101,23 +101,44 @@ export namespace DemoApiV1 {
       for(let i in params){
         let parameter = params[i];
         queryString[i] = parameter.name in this.currentContext.request.query ? this.currentContext.request.query[parameter.name] : parameter.default;
+        
+        // if it's required
         if (!(parameter.name in this.currentContext.request.query) && parameter.required && !('default' in parameter)){
           throw new Error("Missing query string parameter " + parameter.name);
         }
         
-        if (parameter.type == "number" || parameter.type == "integer"){
-          if (typeof queryString[i] != "undefined" && typeof queryString[i] != "number"){
-            if (parameter.type == "number")
-              queryString[i] = parseFloat(queryString[i]);
-            else
-              queryString[i] = parseInt(queryString[i]);
-              
-            if (isNaN(queryString[i])){
-              if (parameter.required){
-                throw new Error("Invalid query string parameter " + parameter.name + ": " + JSON.stringify(this.currentContext.request.query[parameter.name]));
-              } else {
-                queryString[i] = parameter.default || null;
+        if (parameter.name in this.currentContext.request.query) {
+          if (parameter.type == "number" || parameter.type == "integer") {
+            if (typeof queryString[i] != "undefined" && typeof queryString[i] != "number") {
+              if (parameter.type == "number")
+                queryString[i] = parseFloat(queryString[i]);
+              else
+                queryString[i] = parseInt(queryString[i]);
+                
+              if (isNaN(queryString[i])) {
+                if (parameter.required){
+                  throw new Error("Invalid query string parameter " + parameter.name + ": " + JSON.stringify(this.currentContext.request.query[parameter.name]));
+                } else {
+                  queryString[i] = parameter.default || null;
+                }
               }
+            }
+          }
+          
+          if (parameter.type == "boolean") {
+            if (typeof queryString[i] != "boolean") {
+              if (!queryString[i] || queryString[i] == "0" || queryString[i] == "false" || queryString[i] == "")
+                queryString[i] = false;
+              else
+                queryString[i] = true;
+            }
+          }
+          
+          if (parameter.type == "date") {
+            if (!(queryString[i] instanceof Date)) {
+              queryString[i] = new Date(queryString[i]);
+              if (isNaN(queryString[i])) 
+                queryString[i] = parameter.default || null;
             }
           }
         }
@@ -387,6 +408,404 @@ export interface IGetUserById2000 {
       abstract async get(
     queryString: {
       desiredStatus: number;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+  
+
+  /** 
+   * /required/boolean
+   * 
+   */
+  export namespace Required.Boolean {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /required/boolean abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/required/boolean";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "boolean",
+        "required": true,
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param: boolean;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /required/date
+   * 
+   */
+  export namespace Required.Date {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /required/date abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/required/date";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "date",
+        "required": true,
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param: Date;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /required/integer
+   * 
+   */
+  export namespace Required.Integer {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /required/integer abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/required/integer";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "integer",
+        "required": true,
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param: number;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /required/number
+   * 
+   */
+  export namespace Required.Number {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /required/number abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/required/number";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "number",
+        "required": true,
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param: number;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+  
+
+  /** 
+   * /non-required/boolean
+   * 
+   */
+  export namespace Non.Required.Boolean {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /non-required/boolean abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/non-required/boolean";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "boolean",
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param?: boolean;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /non-required/date
+   * 
+   */
+  export namespace Non.Required.Date {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /non-required/date abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/non-required/date";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "date",
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param?: Date;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /non-required/integer
+   * 
+   */
+  export namespace Non.Required.Integer {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /non-required/integer abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/non-required/integer";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "integer",
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param?: number;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /non-required/number
+   * 
+   */
+  export namespace Non.Required.Number {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+    /** 
+    * /non-required/number abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/non-required/number";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "param": {
+        "displayName": "param",
+        "type": "number",
+        "description": "",
+        "name": "param"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      param?: number;
     }
   ): Promise<GetResults>;
     }

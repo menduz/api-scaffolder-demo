@@ -34,4 +34,68 @@ version: v1
       404:
       500:
       505:
-      
+
+
+/required:
+  /boolean:
+    get:
+      queryParameters:
+        param:
+          type: boolean
+          required: true
+      responses:
+        200:
+  /date:
+    get:
+      queryParameters:
+        param:
+          type: date
+          required: true
+      responses:
+        200:
+  /integer:
+    get:
+      queryParameters:
+        param:
+          type: integer
+          required: true
+      responses:
+        200:
+  /number:
+    get:
+      queryParameters:
+        param:
+          type: number
+          required: true
+      responses:
+        200:
+
+/non-required:
+  /boolean:
+    get:
+      queryParameters:
+        param:
+          type: boolean
+      responses:
+        200:
+  /date:
+    get:
+      queryParameters:
+        param:
+          type: date
+      responses:
+        200:
+  /integer:
+    get:
+      queryParameters:
+        param:
+          type: integer
+      responses:
+        200:
+  /number:
+    get:
+      queryParameters:
+        param:
+          type: number
+      responses:
+        200:

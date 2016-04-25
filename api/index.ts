@@ -15,6 +15,30 @@ controllers.push(require('./impl/userById'));
 // /status
 controllers.push(require('./impl/status'));
 
+// /required/boolean
+controllers.push(require('./impl/required/boolean'));
+
+// /required/date
+controllers.push(require('./impl/required/date'));
+
+// /required/integer
+controllers.push(require('./impl/required/integer'));
+
+// /required/number
+controllers.push(require('./impl/required/number'));
+
+// /non-required/boolean
+controllers.push(require('./impl/non/required/boolean'));
+
+// /non-required/date
+controllers.push(require('./impl/non/required/date'));
+
+// /non-required/integer
+controllers.push(require('./impl/non/required/integer'));
+
+// /non-required/number
+controllers.push(require('./impl/non/required/number'));
+
 
 
 /** generates a new instance of each controller of the api. */
