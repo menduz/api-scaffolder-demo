@@ -1,0 +1,15 @@
+{
+    "name": "test-api",
+    "dependencies": {
+        "osprey": "^0.3.1",
+        "express":"^4.13.4",
+        "osprey-router":"^0.4.0",
+        "body-parser": "^1.15.0",
+        "typescript": "^1.8.10"
+        
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "run": "tsc -p tsconfig.json && node --harmony app"
+    }
+}
