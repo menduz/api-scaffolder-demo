@@ -932,4 +932,46 @@ export interface IGetUserById2000 {
     }
   }
   
+  
+
+  /** 
+   * /popularmedia
+   * 
+   */
+  export namespace Popularmedia {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    /* Response get status 503 do not describe any schema nor MIME */
+    export class GetResult503 extends BaseControllerResponse<any> { status = 503; }
+    
+    export type GetResults = GetResult200 | GetResult503;
+
+    /** 
+    * /popularmedia abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/popularmedia";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": null,
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /**
+      * Get a list of what media is most popular at the moment.
+      */
+      abstract async get(): Promise<GetResults>;
+    }
+  }
+  
 }

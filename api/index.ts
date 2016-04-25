@@ -42,6 +42,9 @@ controllers.push(require('./impl/non/required/number'));
 // /crud
 controllers.push(require('./impl/crud'));
 
+// /popularmedia
+controllers.push(require('./impl/popularmedia'));
+
 
 
 /** generates a new instance of each controller of the api. */
