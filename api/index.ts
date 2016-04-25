@@ -12,6 +12,9 @@ controllers.push(require('./impl/me'));
 // /users/{userId}
 controllers.push(require('./impl/userById'));
 
+// /status
+controllers.push(require('./impl/status'));
+
 
 
 /** generates a new instance of each controller of the api. */

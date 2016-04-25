@@ -21,3 +21,17 @@ version: v1
           application/json:
             schema: |
               {"$schema":"http://json-schema.org/draft-04/schema#","id":"/","type":"object","properties":{"filter":{"id":"filter","type":"string"},"results":{"id":"results","type":"array","items":{"id":"0","type":"object","properties":{"name":{"id":"name","type":"string"},"company":{"id":"company","type":"string"}}}}}}
+/status:
+  get:
+    queryParameters:
+      desiredStatus:
+        type: integer
+        required: true
+    responses:
+      200:
+      202:
+      401:
+      404:
+      500:
+      505:
+      

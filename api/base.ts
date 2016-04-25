@@ -96,11 +96,31 @@ export namespace DemoApiV1 {
       }
     }
     
-    private generateQueryStringParams(params: { name: string; default: any }[]){
+    private generateQueryStringParams(params: { name: string; default: any; type: string; required: boolean; }[]){
       var queryString = {};
       for(let i in params){
         let parameter = params[i];
         queryString[i] = parameter.name in this.currentContext.request.query ? this.currentContext.request.query[parameter.name] : parameter.default;
+        if (!(parameter.name in this.currentContext.request.query) && parameter.required && !('default' in parameter)){
+          throw new Error("Missing query string parameter " + parameter.name);
+        }
+        
+        if (parameter.type == "number" || parameter.type == "integer"){
+          if (typeof queryString[i] != "undefined" && typeof queryString[i] != "number"){
+            if (parameter.type == "number")
+              queryString[i] = parseFloat(queryString[i]);
+            else
+              queryString[i] = parseInt(queryString[i]);
+              
+            if (isNaN(queryString[i])){
+              if (parameter.required){
+                throw new Error("Invalid query string parameter " + parameter.name + ": " + JSON.stringify(this.currentContext.request.query[parameter.name]));
+              } else {
+                queryString[i] = parameter.default || null;
+              }
+            }
+          }
+        }
       }
       return queryString;
     }
@@ -307,6 +327,66 @@ export interface IGetUserById2000 {
       abstract async get(
     queryString: {
       filter?: string;
+    }
+  ): Promise<GetResults>;
+    }
+  }
+  
+  
+
+  /** 
+   * /status
+   * 
+   */
+  export namespace Status {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    /* Response get status 202 do not describe any schema nor MIME */
+    export class GetResult202 extends BaseControllerResponse<any> { status = 202; }
+    /* Response get status 401 do not describe any schema nor MIME */
+    export class GetResult401 extends BaseControllerResponse<any> { status = 401; }
+    /* Response get status 404 do not describe any schema nor MIME */
+    export class GetResult404 extends BaseControllerResponse<any> { status = 404; }
+    /* Response get status 500 do not describe any schema nor MIME */
+    export class GetResult500 extends BaseControllerResponse<any> { status = 500; }
+    /* Response get status 505 do not describe any schema nor MIME */
+    export class GetResult505 extends BaseControllerResponse<any> { status = 505; }
+    
+    export type GetResults = GetResult200 | GetResult202 | GetResult401 | GetResult404 | GetResult500 | GetResult505;
+
+    /** 
+    * /status abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/status";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "desiredStatus": {
+        "displayName": "desiredStatus",
+        "type": "integer",
+        "required": true,
+        "description": "",
+        "name": "desiredStatus"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      desiredStatus: number;
     }
   ): Promise<GetResults>;
     }
