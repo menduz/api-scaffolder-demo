@@ -39,6 +39,9 @@ controllers.push(require('./impl/non/required/integer'));
 // /non-required/number
 controllers.push(require('./impl/non/required/number'));
 
+// /crud
+controllers.push(require('./impl/crud'));
+
 
 
 /** generates a new instance of each controller of the api. */

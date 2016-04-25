@@ -99,3 +99,28 @@ version: v1
           type: number
       responses:
         200:
+        
+/crud:
+  get:
+    queryParameters:
+      id:
+        type: integer
+        required: true
+        description: Resource ID
+    responses:
+      200:
+  put:
+    responses:
+      200:
+  post:
+    responses:
+      201:
+  patch:
+    responses:
+      200:
+      404:
+  delete:
+    responses:
+      200:
+      204:
+      404:

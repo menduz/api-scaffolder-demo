@@ -811,4 +811,125 @@ export interface IGetUserById2000 {
     }
   }
   
+  
+
+  /** 
+   * /crud
+   * 
+   */
+  export namespace Crud {
+    
+
+
+    /* Response get status 200 do not describe any schema nor MIME */
+    export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type GetResults = GetResult200;
+
+
+
+    /* Response put status 200 do not describe any schema nor MIME */
+    export class PutResult200 extends BaseControllerResponse<any> { status = 200; }
+    
+    export type PutResults = PutResult200;
+
+
+
+    /* Response post status 201 do not describe any schema nor MIME */
+    export class PostResult201 extends BaseControllerResponse<any> { status = 201; }
+    
+    export type PostResults = PostResult201;
+
+
+
+    /* Response patch status 200 do not describe any schema nor MIME */
+    export class PatchResult200 extends BaseControllerResponse<any> { status = 200; }
+    /* Response patch status 404 do not describe any schema nor MIME */
+    export class PatchResult404 extends BaseControllerResponse<any> { status = 404; }
+    
+    export type PatchResults = PatchResult200 | PatchResult404;
+
+
+
+    /* Response delete status 200 do not describe any schema nor MIME */
+    export class DeleteResult200 extends BaseControllerResponse<any> { status = 200; }
+    /* Response delete status 204 do not describe any schema nor MIME */
+    export class DeleteResult204 extends BaseControllerResponse<any> { status = 204; }
+    /* Response delete status 404 do not describe any schema nor MIME */
+    export class DeleteResult404 extends BaseControllerResponse<any> { status = 404; }
+    
+    export type DeleteResults = DeleteResult200 | DeleteResult204 | DeleteResult404;
+
+    /** 
+    * /crud abstract handler. 
+    */
+    export abstract class AbstractHandler extends BaseController {
+      baseUri = "/crud";
+      baseUriParameters = {};
+      methods = {
+  "get": {
+    "body": false,
+    "queryString": {
+      "id": {
+        "displayName": "id",
+        "type": "integer",
+        "required": true,
+        "description": "Resource ID",
+        "name": "id"
+      }
+    },
+    "headers": null,
+    "securedBy": []
+  },
+  "put": {
+    "body": false,
+    "queryString": null,
+    "headers": null,
+    "securedBy": []
+  },
+  "post": {
+    "body": false,
+    "queryString": null,
+    "headers": null,
+    "securedBy": []
+  },
+  "patch": {
+    "body": false,
+    "queryString": null,
+    "headers": null,
+    "securedBy": []
+  },
+  "delete": {
+    "body": false,
+    "queryString": null,
+    "headers": null,
+    "securedBy": []
+  }
+};
+      uriParameters = {
+      
+    }
+
+      /** get method */
+      abstract async get(
+    queryString: {
+      /** Resource ID */
+      id: number;
+    }
+  ): Promise<GetResults>;
+
+      /** put method */
+      abstract async put(): Promise<PutResults>;
+
+      /** post method */
+      abstract async post(): Promise<PostResults>;
+
+      /** patch method */
+      abstract async patch(): Promise<PatchResults>;
+
+      /** delete method */
+      abstract async delete(): Promise<DeleteResults>;
+    }
+  }
+  
 }
