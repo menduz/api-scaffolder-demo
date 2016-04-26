@@ -49,29 +49,29 @@ controllers.push(require('./impl/popularmedia'));
 
 /** generates a new instance of each controller of the api. */
 export function initializeControllers(): DemoApiV1.BaseController[] {
-  let instances = [];
+	let instances = [];
 
-  controllers.forEach(x => {
-    instances.push(new x.Controller());
-  });
+	controllers.forEach(x => {
+		instances.push(new x.Controller());
+	});
 
-  return instances;
+	return instances;
 }
 
 /** registers the controllers on a router */
 export function registerRouter(controllers?: DemoApiV1.BaseController[], router?) {
-  if (!controllers) controllers = initializeControllers();
-  if (!router) router = getMiddleware();
-  controllers.forEach(x => x.registerRouter(router));
-  return controllers;
+    if (!controllers) controllers = initializeControllers();
+    if (!router) router = getMiddleware();
+    controllers.forEach(x => x.registerRouter(router));
+    return controllers;
 }
 
 /** gets the router */
 export function getMiddleware() {
-  return DemoApiV1.getMiddleware();
+    return DemoApiV1.getMiddleware();
 }
 
 /** gets the context reference of the given request */
 export function getContext(expressRequest: express.Request): IContext {
-  return DemoApiV1.getContext(expressRequest);
+    return DemoApiV1.getContext(expressRequest);
 }

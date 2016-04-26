@@ -9,12 +9,12 @@ const ns = DemoApiV1.Me;
 */
 export class Controller extends ns.AbstractHandler {
 
-  /** 
-   * Get 
-   * @returns { GetResult200 } instances
-   */
-  async get() {
-    let result = new ns.GetResult200({ name: 'Agustin', company: 'MuleSoft' });
-    return result;
-  }
+	/** 
+	 * Get 
+	 * @returns { GetResult200 } instances
+	 */
+	async get() {
+		let result = new ns.GetResult200({ name: 'Agustin', company: 'MuleSoft' });
+		return result;
+	}
 }

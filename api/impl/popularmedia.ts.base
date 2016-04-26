@@ -9,13 +9,13 @@ const ns = DemoApiV1.Popularmedia;
 */
 export class Controller extends ns.AbstractHandler {
 
-  /**
-  * Get a list of what media is most popular at the moment.
-  * @returns { GetResult200 | GetResult503 } instances
-  */
-  async get() {
-    //  let result = new ns.GetResult200();
-    //  return result;
-    return new Error('Get not implemented yet') as any;
-  }
+	/**
+	* Get a list of what media is most popular at the moment.
+	* @returns { GetResult200 | GetResult503 } instances
+	*/
+	async get() {
+		//  let result = new ns.GetResult200();
+		//  return result;
+		throw new DemoApiV1.HttpError.NotImplemented;
+	}
 }
