@@ -18,6 +18,10 @@ DemoApiV1.SecurityMiddlewares.myCustomSec = (req, res, next) => {
     next();
 }
 
+DemoApiV1.httpErrorHandler = (error, req, res, next) => {
+    res.status(error.status).send(`<h1>${error.message || error.constructor.name}</h1>`);
+}
+
 // register our api middleware on express
 app.use(demoApi.getMiddleware());
 
