@@ -79,9 +79,15 @@ export namespace DemoApiV1 {
 	}
 
 	export namespace SecurityMiddlewares {
-		export const securitySettings = {};
+		export const securitySettings = { "myCustomSec": { "description": "Uses a \"token\" query string", "describedBy": { "queryParameters": { "token": { "description": "provide token", "type": "string", "example": "ABS-SDF" } } }, "type": "x-myCustomSec" } };
 
 		export function no_authenticate(req: express.Request, res: express.Response, next: express.NextFunction) {
+			next();
+		}
+
+		/** x-myCustomSec implementation */
+		export function myCustomSec(req: express.Request, res: express.Response, next: express.NextFunction) {
+			console.warn("Warning! SecurityMiddlewares." + "myCustomSec" + " is not implemented!");
 			next();
 		}
 
@@ -89,6 +95,7 @@ export namespace DemoApiV1 {
 
 	namespace SecurityMiddlewaresInvokers {
 		export const no_authenticate = (req: express.Request, res: express.Response, next) => SecurityMiddlewares.no_authenticate(req, res, next);
+		export const myCustomSec = (req: express.Request, res: express.Response, next) => SecurityMiddlewares.myCustomSec(req, res, next);
 	}
 
 	export var httpErrorHandler: express.ErrorRequestHandler = (err, req, res, next) => {
@@ -111,7 +118,21 @@ export namespace DemoApiV1 {
 	 */
 	function concatMiddlewares(list) {
 		return function(req, res, next) {
-			middlewareIterator(list, 0, req, res, next);
+			try {
+				middlewareIterator(list, 0, req, res, (error) => {
+					if (error instanceof HttpError.BaseError) {
+						httpErrorHandler(error, req, res, next);
+					} else {
+						next(error);
+					}
+				});
+			} catch (error) {
+				if (error instanceof HttpError.BaseError) {
+					httpErrorHandler(error, req, res, next);
+				} else {
+					next(error);
+				}
+			}
 		}
 	}
 
@@ -351,6 +372,46 @@ export namespace DemoApiV1 {
 					"queryString": null,
 					"headers": null,
 					"securedBy": []
+				}
+			};
+			uriParameters = {
+
+			}
+
+			/** get method */
+			abstract async get(): Promise<GetResults>;
+		}
+	}
+
+
+
+	/** 
+	 * /me/payments
+	 * 
+	 */
+	export namespace Me.Payments {
+
+
+
+		/* Response get status 200 do not describe any schema nor MIME */
+		export class GetResult200 extends BaseControllerResponse<any> { status = 200; }
+
+		export type GetResults = GetResult200 | void;
+
+		/** 
+		* /me/payments abstract handler. 
+		*/
+		export abstract class AbstractHandler extends BaseController {
+			baseUri = "/me/payments";
+			baseUriParameters = {};
+			methods = {
+				"get": {
+					"body": false,
+					"queryString": null,
+					"headers": null,
+					"securedBy": [
+						"myCustomSec"
+					]
 				}
 			};
 			uriParameters = {

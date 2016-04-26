@@ -9,6 +9,9 @@ const controllers = [];
 // /me
 controllers.push(require('./impl/me'));
 
+// /me/payments
+controllers.push(require('./impl/me/payments'));
+
 // /users/{userId}
 controllers.push(require('./impl/userById'));
 
