@@ -14,7 +14,8 @@ export class Controller extends ns.AbstractHandler {
    * @returns { GetResult200 } instances
    */
   async get() {
-    let result = new ns.GetResult200({ name: 'Agustin', company: 'MuleSoft' });
-    return result;
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
   }
 }

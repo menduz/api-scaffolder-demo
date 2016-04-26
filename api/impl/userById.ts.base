@@ -18,16 +18,8 @@ export class Controller extends ns.AbstractHandler {
       filter?: string;
     }
   ) {
-    let result = new ns.GetResult200({});
-
-    result.data.filter = queryString.filter;
-
-    result.data.results = [];
-
-    result.data.results.push({ name: 'Juan', company: 'Mulesoft' });
-
-    result.data.results.push({ name: 'Agustin', company: 'Mulesoft' });
-
-    return result;
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
   }
 }

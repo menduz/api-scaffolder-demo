@@ -1,0 +1,25 @@
+import { DemoApiV1 } from '../base'
+
+
+const ns = DemoApiV1.Status;
+
+/** 
+* Url: /status
+* 
+*/
+export class Controller extends ns.AbstractHandler {
+
+  /** 
+   * Get 
+   * @returns { GetResult200 | GetResult202 | GetResult401 | GetResult404 | GetResult500 | GetResult505 } instances
+   */
+  async get(
+    queryString: {
+      desiredStatus: number;
+    }
+  ) {
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
+  }
+}

@@ -1,4 +1,4 @@
-import {DemoApiV1} from '../base'
+import { DemoApiV1 } from '../base'
 
 
 const ns = DemoApiV1.Popularmedia;
@@ -14,7 +14,8 @@ export class Controller extends ns.AbstractHandler {
   * @returns { GetResult200 | GetResult503 } instances
   */
   async get() {
-    let result = new ns.GetResult200();
-    return result;
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
   }
 }

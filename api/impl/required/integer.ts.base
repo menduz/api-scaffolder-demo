@@ -18,7 +18,8 @@ export class Controller extends ns.AbstractHandler {
       param: number;
     }
   ) {
-    let result = new ns.GetResult200(queryString);
-    return result;
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
   }
 }

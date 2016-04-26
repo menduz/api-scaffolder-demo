@@ -1,10 +1,10 @@
 import { DemoApiV1 } from '../../base'
 
 
-const ns = DemoApiV1.Required.Integer;
+const ns = DemoApiV1.Required.Number;
 
 /** 
-* Url: /required/integer
+* Url: /required/number
 * 
 */
 export class Controller extends ns.AbstractHandler {
@@ -18,7 +18,8 @@ export class Controller extends ns.AbstractHandler {
       param: number;
     }
   ) {
-    let result = new ns.GetResult200(queryString);
-    return result;
+    //  let result = new ns.GetResult200();
+    //  return result;
+    return new Error('Get not implemented yet') as any;
   }
 }

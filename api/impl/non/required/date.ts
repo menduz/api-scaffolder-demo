@@ -22,5 +22,3 @@ export class Controller extends ns.AbstractHandler {
     return result;
   }
 }
-
-
