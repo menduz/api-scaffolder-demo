@@ -25,7 +25,9 @@ DemoApi_V1.httpErrorHandler = (error, req, res, next) => {
 // register our api middleware on express
 app.use(demoApi.getMiddleware());
 
-
+app.use(function(error, req, res, next) {
+    res.status(error.code || 400).send(`<h1>${error.message || error.constructor.name}</h1><hr/><pre>` + JSON.stringify(error, null, 4) + '</pre>');
+} as any);
 
 // run!
 app.listen(3001, () => console.log('Listening on port 3001'));
