@@ -402,7 +402,6 @@ export namespace DemoApi_V1 {
 		* /me abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/me";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -456,7 +455,6 @@ export namespace DemoApi_V1 {
 		* /me/payments abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/me/payments";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -502,7 +500,6 @@ export namespace DemoApi_V1 {
 		* /users/{userId} abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/users/{userId}";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -588,7 +585,6 @@ export namespace DemoApi_V1 {
 		* /status abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/status";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -652,7 +648,6 @@ export namespace DemoApi_V1 {
 		* /required/boolean abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/required/boolean";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -710,7 +705,6 @@ export namespace DemoApi_V1 {
 		* /required/date abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/required/date";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -768,7 +762,6 @@ export namespace DemoApi_V1 {
 		* /required/integer abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/required/integer";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -826,7 +819,6 @@ export namespace DemoApi_V1 {
 		* /required/number abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/required/number";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -885,7 +877,6 @@ export namespace DemoApi_V1 {
 		* /non-required/boolean abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/non-required/boolean";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -942,7 +933,6 @@ export namespace DemoApi_V1 {
 		* /non-required/date abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/non-required/date";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -999,7 +989,6 @@ export namespace DemoApi_V1 {
 		* /non-required/integer abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/non-required/integer";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -1056,7 +1045,6 @@ export namespace DemoApi_V1 {
 		* /non-required/number abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/non-required/number";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -1143,7 +1131,6 @@ export namespace DemoApi_V1 {
 		* /crud abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/crud";
 			descriptor = {
 				"methods": {
 					"get": {
@@ -1258,7 +1245,6 @@ export namespace DemoApi_V1 {
 		* /popularmedia abstract handler. 
 		*/
 		export abstract class AbstractHandler extends BaseController {
-			baseUri = "/popularmedia";
 			descriptor = {
 				"methods": {
 					"get": {
