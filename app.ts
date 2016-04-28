@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as demoApi from './api';
-import { DemoApiV1 } from './api/base';
+import { DemoApi_V1, HttpError } from './api/base';
 
 // initialize our express app
 var app = express();
@@ -11,14 +11,14 @@ demoApi.registerRouter(controllers);
 
 // register the security handler
 
-DemoApiV1.SecurityMiddlewares.myCustomSec = (req, res, next) => {
+DemoApi_V1.SecurityMiddlewares.myCustomSec = (req, res, next) => {
     if(req.query['token'] != 'safe'){
-        throw new DemoApiV1.HttpError.Unauthorized('invalid token');
+        throw new HttpError.Unauthorized('invalid token');
     }
     next();
 }
 
-DemoApiV1.httpErrorHandler = (error, req, res, next) => {
+DemoApi_V1.httpErrorHandler = (error, req, res, next) => {
     res.status(error.status).send(`<h1>${error.message || error.constructor.name}</h1>`);
 }
 

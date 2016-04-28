@@ -1,7 +1,7 @@
-import { DemoApiV1 } from '../base'
+import { DemoApi_V1 } from '../base'
 
 
-const ns = DemoApiV1.Status;
+const ns = DemoApi_V1.Status;
 
 /** 
 * Url: /status
@@ -18,7 +18,7 @@ export class Controller extends ns.AbstractHandler {
 			desiredStatus: number;
 		}
 	) {
-		let result: DemoApiV1.BaseControllerResponse<any>;
+		let result: DemoApi_V1.BaseControllerResponse<any>;
 
 		switch (queryString.desiredStatus) {
 			case 202:

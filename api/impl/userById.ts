@@ -1,7 +1,7 @@
-import { DemoApiV1 } from '../base'
+import { DemoApi_V1 } from '../base'
 
 
-const ns = DemoApiV1.UserById;
+const ns = DemoApi_V1.UserById;
 
 /** 
 * Url: /users/{userId}

@@ -1,7 +1,7 @@
-import { DemoApiV1 } from '../../base'
+import { DemoApi_V1, HttpError } from '../../base'
 
 
-const ns = DemoApiV1.Required.Integer;
+const ns = DemoApi_V1.Required.Integer;
 
 /** 
 * Url: /required/integer
@@ -15,11 +15,12 @@ export class Controller extends ns.AbstractHandler {
 	 */
 	async get(
 		queryString: {
+			/** [REQUIRED], integer.  */
 			param: number;
 		}
 	) {
 		//  let result = new ns.GetResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 }

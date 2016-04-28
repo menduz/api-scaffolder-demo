@@ -1,7 +1,7 @@
-import { DemoApiV1 } from '../../../base'
+import { DemoApi_V1 } from '../../../base'
 
 
-const ns = DemoApiV1.Non.Required.Boolean;
+const ns = DemoApi_V1.Non.Required.Boolean;
 
 /** 
 * Url: /non-required/boolean

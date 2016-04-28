@@ -1,7 +1,7 @@
-import { DemoApiV1 } from '../base'
+import { DemoApi_V1, HttpError } from '../base'
 
 
-const ns = DemoApiV1.Crud;
+const ns = DemoApi_V1.Crud;
 
 /** 
 * Url: /crud
@@ -15,13 +15,13 @@ export class Controller extends ns.AbstractHandler {
 	 */
 	async get(
 		queryString: {
-			/** Resource ID */
+			/** [REQUIRED], integer. Resource ID.  */
 			id: number;
 		}
 	) {
 		//  let result = new ns.GetResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 
 	/** 
@@ -31,7 +31,7 @@ export class Controller extends ns.AbstractHandler {
 	async put() {
 		//  let result = new ns.PutResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 
 	/** 
@@ -41,7 +41,7 @@ export class Controller extends ns.AbstractHandler {
 	async post() {
 		//  let result = new ns.PostResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 
 	/** 
@@ -51,7 +51,7 @@ export class Controller extends ns.AbstractHandler {
 	async patch() {
 		//  let result = new ns.PatchResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 
 	/** 
@@ -61,6 +61,6 @@ export class Controller extends ns.AbstractHandler {
 	async delete() {
 		//  let result = new ns.DeleteResult200();
 		//  return result;
-		throw new DemoApiV1.HttpError.NotImplemented;
+		throw new HttpError.NotImplemented;
 	}
 }
